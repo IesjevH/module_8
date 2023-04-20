@@ -20,7 +20,7 @@ html,body{
 <body>
  
     <?php
-include("connections.php");
+include("connections.inc.php");
 
 
 $sql = "SELECT * FROM producten WHERE id = ". $_GET["id"] ;
@@ -32,7 +32,7 @@ if (mysqli_num_rows($result) > 0) {
     ?>
 <div class="producten">
 <?php
-    echo "<a href='detail.php?id=".$row["id"]."'>id: " . $row["id"]. " - name: " . $row["name"]. "<img src='" . $row["picture"]. "'/></a>";
+    echo "<a href='detail.php?id=".$row["id"]."'>id: " . $row["id"]. " - naam: " . $row["naam"]. "<img src='" . $row["picture"]. "'/></a>";
     echo("type1: " . $row["type1"] . "<br>");
     echo("type2: " . $row["type2"] . "<br>");
     echo("species: " . $row["species"] . "<br>");

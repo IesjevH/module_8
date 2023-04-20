@@ -18,10 +18,10 @@ html,body{
 <body>
    
     <?php
-include("connections.php");
+include("connections.inc.php");
 
 
-$sql = "SELECT name, id,price";
+$sql = "SELECT naam, id,prijs,beschrijving";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
@@ -32,8 +32,8 @@ if (mysqli_num_rows($result) > 0) {
     ?>
   <div class="producten">
   <a href='detail.php?id=<?php echo($row["id"]);?>'>
-    <?php echo($row["name"]);?>
-    <img src='<?php echo($row["picture"]);?>'/>
+    <?php echo($row["naam"]);?>
+ <!--  <img src='<?php echo($row["picture"]);?>'/> -->
   </a>
   </div>
   <?php
