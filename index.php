@@ -1,52 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rappermerch</title>
-    <style>
-html,body{
-    margin: 0;
-    padding: 0;
-    width:100%;
-    box-sizing: border-box;
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Overzicht</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      box-sizing: border-box;
 
-}
-        </style>
+    }
+
+
+  </style>
 </head>
+
 <body>
-   
-    <?php
-include("connections.inc.php");
+Producten:
 
+<?php include 'connection.inc.php'; 
 
-$sql = "SELECT naam, id,prijs,beschrijving";
-$result = mysqli_query($conn, $sql);
+$stmt = $conn->prepare("SELECT id  FROM producten");
+$stmt->execute();
 
-if (mysqli_num_rows($result) > 0) {
-  
-  
-  // output data of each row
-  while($row = mysqli_fetch_assoc($result)) {
-    ?>
-  <div class="producten">
-  <a href='detail.php?id=<?php echo($row["id"]);?>'>
-    <?php echo($row["naam"]);?>
- <!--  <img src='<?php echo($row["picture"]);?>'/> -->
-  </a>
-  </div>
-  <?php
-  }
-
-
-} else {
-  echo "0 results";
+// set the resulting array to associative
+$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
+  echo $v;
 }
+
+$conn = null;
+echo "</table>";
+
 ?>
 
-<?php
-mysqli_close($conn);
-?>
 </body>
+
 </html>
