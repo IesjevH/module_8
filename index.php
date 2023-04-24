@@ -26,7 +26,7 @@ img {
 Producten:
 
 <?php include 'connection.inc.php'; 
-$id = $_GET[' id'];
+
 $sql = "SELECT  id,  naam,  prijs,  beschrijving,  img  FROM  producten";
 $result = mysqli_query($conn, $sql);
 
