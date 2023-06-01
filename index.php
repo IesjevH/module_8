@@ -13,8 +13,10 @@
       padding: 0;
       width: 100%;
       box-sizing: border-box;
+      
 
     }
+
 img {
   width: 150px;
   height: auto;
@@ -33,7 +35,7 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
   while($row = mysqli_fetch_assoc($result)) {
     ?>
-    <a href="detail.php?id=<?php echo($row['id']); ?>">
+    <a class="product-list"  href="detail.php?id=<?php echo($row['id']); ?>">
     <?php
     echo "id: " . $row["id"]. "  " . $row["naam"]. " " . $row["prijs"]." ".$row['beschrijving'] ." ". "<br>";
     ?>
